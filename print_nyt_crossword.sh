@@ -2,6 +2,7 @@
 
 USERNAME=""
 PASSWORD=""
+NUMBER_OF_COPIES=2
 
 # Remove cookies 
 rm cookies.txt
@@ -22,4 +23,4 @@ curl -c cookies.txt -b cookies.txt -X POST -d "{\"email\":\"${USERNAME}\",\"auth
 curl -c cookies.txt -b cookies.txt -X POST -d "{\"username\":\"${USERNAME}\",\"auth_token\":\"${AUTH_TOKEN}\",\"form_view\":\"login\",\"password\":\"${PASSWORD}\",\"remember_me\":\"Y\"}" "https://myaccount.nytimes.com/svc/lire_ui/login" #-H "Content-Type: application/json"
 
 # Download the print edition of the crossword and send to default printer
-curl -s -b cookies.txt "https://www.nytimes.com/svc/crosswords/v2/puzzle/print/${DATE}.pdf" | lpr -o media=Letter -o fit-to-page
+curl -s -b cookies.txt "https://www.nytimes.com/svc/crosswords/v2/puzzle/print/${DATE}.pdf" | lpr -o media=Letter -o fit-to-page -# ${NUMBER_OF_COPIES}
