@@ -17,10 +17,10 @@ AUTH_TOKEN=$(curl -v -c cookies.txt -b cookies.txt "https://myaccount.nytimes.co
 AUTH_TOKEN=${AUTH_TOKEN//&#x3D;/=}
 
 # First page that asks for email address
-curl -c cookies.txt -b cookies.txt -X POST -d "{\"email\":\"${USERNAME}\",\"auth_token\":\"${AUTH_TOKEN}\",\"form_view\":\"enterEmail\"}" "https://myaccount.nytimes.com/svc/lire_ui/authorize-email" #-H "Content-Type: application/json"
+curl -c cookies.txt -b cookies.txt -X POST -d "{\"email\":\"${USERNAME}\",\"auth_token\":\"${AUTH_TOKEN}\",\"form_view\":\"enterEmail\"}" "https://myaccount.nytimes.com/svc/lire_ui/authorize-email"
 
 # Second page that asks for password
-curl -c cookies.txt -b cookies.txt -X POST -d "{\"username\":\"${USERNAME}\",\"auth_token\":\"${AUTH_TOKEN}\",\"form_view\":\"login\",\"password\":\"${PASSWORD}\",\"remember_me\":\"Y\"}" "https://myaccount.nytimes.com/svc/lire_ui/login" #-H "Content-Type: application/json"
+curl -c cookies.txt -b cookies.txt -X POST -d "{\"username\":\"${USERNAME}\",\"auth_token\":\"${AUTH_TOKEN}\",\"form_view\":\"login\",\"password\":\"${PASSWORD}\",\"remember_me\":\"Y\"}" "https://myaccount.nytimes.com/svc/lire_ui/login"
 
 # Download the print edition of the crossword and send to default printer
-curl -s -b cookies.txt "https://www.nytimes.com/svc/crosswords/v2/puzzle/print/${DATE}.pdf" | lpr -o media=Letter -o fit-to-page -# ${NUMBER_OF_COPIES}
+curl -b cookies.txt "https://www.nytimes.com/svc/crosswords/v2/puzzle/print/${DATE}.pdf" | lpr -o media=Letter -o fit-to-page -# ${NUMBER_OF_COPIES}
