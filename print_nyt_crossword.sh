@@ -1,8 +1,8 @@
 #!/bin/bash
 
-USERNAME=""
-PASSWORD=""
-NUMBER_OF_COPIES=2
+USERNAME=$1
+PASSWORD=$2
+NUMBER_OF_COPIES=$3
 
 # Remove cookies 
 rm -f cookies.txt
